@@ -1,6 +1,12 @@
+from datetime import datetime, UTC
+
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
+
 from .database import Base
-from datetime import datetime
+
+
+def utc_now():
+    return datetime.now(UTC)
 
 
 class Employee(Base):
@@ -11,6 +17,7 @@ class Employee(Base):
     email = Column(String(150), unique=True, nullable=False, index=True)
     department = Column(String(100), nullable=False)
 
+
 class Engineer(Base):
     __tablename__ = "engineers"
 
@@ -18,9 +25,6 @@ class Engineer(Base):
     name = Column(String(100), nullable=False)
     email = Column(String(150), unique=True, nullable=False, index=True)
     specialization = Column(String(100), nullable=False)
-
-from sqlalchemy import ForeignKey, DateTime
-from datetime import datetime
 
 
 class Ticket(Base):
@@ -34,8 +38,9 @@ class Ticket(Base):
     category = Column(String(50), nullable=False)
     priority = Column(String(20), nullable=False)
     status = Column(String(20), nullable=False, default="OPEN")
-    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
+    created_at = Column(DateTime, default=utc_now, nullable=False)
+    updated_at = Column(DateTime, default=utc_now, onupdate=utc_now, nullable=False)
+
 
 class TicketUpdate(Base):
     __tablename__ = "ticket_updates"
@@ -46,4 +51,4 @@ class TicketUpdate(Base):
     comment = Column(String(1000), nullable=False)
     old_status = Column(String(20), nullable=True)
     new_status = Column(String(20), nullable=False)
-    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    created_at = Column(DateTime, default=utc_now, nullable=False)
