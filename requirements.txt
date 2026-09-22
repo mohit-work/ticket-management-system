@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+sqlalchemy
+psycopg2-binary
+python-dotenv
+pydantic
+pytest
+pytest-cov
+pandas
+pyarrow
+pyspark==4.2.0

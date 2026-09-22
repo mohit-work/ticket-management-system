@@ -1,0 +1,4 @@
+[
+  {"employee_id": 1, "employee_name": "Test Employee", "department": "IT"},
+  {"employee_id": 2, "employee_name": "Finance User", "department": "Finance"}
+]
